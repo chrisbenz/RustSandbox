@@ -24,4 +24,18 @@ fn main() {
 
     println!("There are {} spaces", spaces);
 
+    let s = String::from("hello world");
+
+    let hello = &s[0..5];
+    let world = &s[6..11];
+    println!("{}", hello);
+    println!("{}", world);
+    
+    let a = [1, 2, 3, 4, 5];
+    let slice = &a[1..3];
+    println!("Length of slice is {}", slice.len());
+    println!("Contents of slice are {:?}", slice);
+
+    let another_slice = &a[0..4];
+    println!("Contents of this slice are {:?}", another_slice);
 }
