@@ -26,4 +26,12 @@ fn main() {
         None => println!("No fourth element"),
     }
 
+    let mut v = vec![20, 30, 80, 123];
+
+    for i in &mut v {
+        *i += 50;
+    }
+
+    println!("{:?}", v);
+
 } // v would go out of scope at this point and be freed
