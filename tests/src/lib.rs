@@ -4,6 +4,10 @@ struct Rectangle {
     height: u32,
 }
 
+pub struct Guess {
+    value: i32,
+}
+
 // impl Rectangle {
 //     fn can_hold(&self, other: &Rectangle) -> bool {
 //         self.width > other.width && self.height > other.height
@@ -17,8 +21,22 @@ impl Rectangle {
     }
 }
 
+impl Guess {
+    pub fn new(value: i32) -> Guess {
+        if value < 1 || value > 100 {
+            panic!("Guess value must be between 1 and 100, got {}.", value);
+        }
+
+        Guess { value }
+    }
+}
+
 pub fn add_two(a: i32) -> i32 {
     a + 2
+}
+
+pub fn greeting(name: &str) -> String {
+    String::from("Hello!")
 }
 
 #[cfg(test)]
@@ -78,5 +96,28 @@ mod tests {
         assert_ne!(9999, add_two(2))
     }
     
+    #[test]
+    fn greetings() {
+        let result = greeting("Chris");
+        assert!(result.contains("Chris"), 
+        "Greeting did not contain name, value instead was `{}`",
+        result);
+    }
+
+    #[test]
+    #[should_panic]
+    fn greater_than_100() {
+        Guess::new(200);
+    }
+
+    #[test]
+    fn using_result() -> Result<(), String> {
+        if 99 + 1 == 100 {
+            print!("Looks like everything is A-Okay");
+            Ok(())
+        } else {
+            Err(String::from("Somehow, some way, 99 + 1 does not equal 100"))
+        }
+    }
 
 }
